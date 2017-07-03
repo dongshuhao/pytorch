@@ -8,7 +8,7 @@ from .activation import Threshold, ReLU, Hardtanh, ReLU6, Sigmoid, Tanh, \
 from .loss import L1Loss, NLLLoss, KLDivLoss, MSELoss, BCELoss, BCEWithLogitsLoss, NLLLoss2d, \
     CosineEmbeddingLoss, HingeEmbeddingLoss, MarginRankingLoss, \
     MultiLabelMarginLoss, MultiLabelSoftMarginLoss, MultiMarginLoss, \
-    SmoothL1Loss, SoftMarginLoss, CrossEntropyLoss, TripletMarginLoss, PoissonNLLLoss
+    SmoothL1Loss, SoftMarginLoss, CrossEntropyLoss, TripletMarginLoss, PoissonNLLLoss, ContrastiveLoss
 from .container import Container, Sequential, ModuleList, ParameterList
 from .pooling import AvgPool1d, AvgPool2d, AvgPool3d, MaxPool1d, MaxPool2d, MaxPool3d, \
     MaxUnpool1d, MaxUnpool2d, MaxUnpool3d, FractionalMaxPool2d, LPPool2d, AdaptiveMaxPool1d, \
@@ -43,5 +43,5 @@ __all__ = [
     'Embedding', 'EmbeddingBag', 'RNNBase', 'RNN', 'LSTM', 'GRU', 'RNNCell', 'LSTMCell', 'GRUCell',
     'PixelShuffle', 'Upsample', 'UpsamplingNearest2d', 'UpsamplingBilinear2d', 'PairwiseDistance',
     'AdaptiveMaxPool1d', 'AdaptiveMaxPool2d', 'AdaptiveAvgPool1d', 'AdaptiveAvgPool2d',
-    'TripletMarginLoss', 'ZeroPad2d', 'ConstantPad2d', 'Bilinear', 'CosineSimilarity',
+    'TripletMarginLoss', 'ZeroPad2d', 'ConstantPad2d', 'Bilinear', 'CosineSimilarity', 'ContrastiveLoss'
 ]

@@ -459,6 +459,39 @@ class CosineEmbeddingLoss(Module):
         return self._backend.CosineEmbeddingLoss(self.margin,
                                                  self.size_average)(input1, input2, target)
 
+class ContrastiveLoss(Module):
+    r"""Creates a criterion that measures the loss given  an input tensors x1, x2
+    and a `Tensor` label `y` with values 1 or -1.
+    This is used for measuring whether two inputs are similar or dissimilar,
+    using the ContrastiveLoss.
+
+    If `margin` is missing, the default value is `1.0`.
+
+    The loss function for each sample is::
+
+                        { 1/2 ||a-b||^2,                  if y ==  1
+        loss(a, b, y) = {
+                        { 1/2 max(0, margin - ||a-b||)^2, if y == -1
+
+        # FIXME:
+                         { ,                  if y ==  1
+        loss(a, b, y)' = {
+                         { , if y == -1
+
+    If the internal variable `size_average` is equal to `True`,
+    the loss function averages the loss over the batch samples;
+    if `size_average` is `False`, then the loss function sums over the
+    batch samples. By default, `size_average = True`.
+    """
+
+    def __init__(self, margin=1.0, size_average=True):
+        super(ContrastiveLoss, self).__init__()
+        self.margin = margin
+        self.size_average = size_average
+
+    def forward(self, input1, input2, target):
+        return self._backend.ContrastiveLoss(self.margin,
+                                                 self.size_average)(input1, input2, target)
 
 class MarginRankingLoss(Module):
     r"""Creates a criterion that measures the loss given
@@ -571,6 +604,9 @@ class TripletMarginLoss(Module):
     def forward(self, anchor, positive, negative):
         return F.triplet_margin_loss(anchor, positive, negative, self.margin,
                                      self.p, self.eps, self.swap)
+
+
+
 
 # TODO: L1HingeEmbeddingCriterion
 # TODO: MSECriterion weight
